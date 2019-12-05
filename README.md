@@ -8,7 +8,7 @@ Library that provides an object-storage protocol that can be implemented by othe
 
 [![Clojars Project](https://clojars.org/magnet/object-storage.core/latest-version.svg)](https://clojars.org/magnet/object-storage.core)
 
-Note that this library is not intended to be used directly, see the list of [implementations](https://github.https://github.com/magnetcoop/object-storage.s3#usagecom/magnetcoop/object-storage.ftp#implementations) instead.
+Note that this library is not intended to be used directly, see the list of [implementations](#implementations) instead.
 
 ## Implementations
 
