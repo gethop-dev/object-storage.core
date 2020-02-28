@@ -41,7 +41,9 @@
 (s/def ::rename-object-ret (s/keys :req-un [::success?]
                                    :opt-un [::error-details]))
 
-(s/def ::list-objects-args (s/cat :config record? :parent-object-id ::object-id))
+(s/def ::recursive? boolean?)
+(s/def ::list-objects-opts (s/keys :opt-un [::recursive?]))
+(s/def ::list-objects-args (s/cat :config record? :parent-object-id ::object-id :opts (s/? ::list-objects-opts)))
 (s/def ::list-objects-ret (s/keys :req-un [::success?]
                                   :opt-un [::error-details]))
 
@@ -75,4 +77,6 @@
     "Rename `object-id` to `new-object-id` in the storage system.")
   (list-objects
     [this parent-object-id]
-    "List all child objects of the `parent-object-id` object"))
+    [this parent-object-id opts]
+    "List all child objects of the `parent-object-id` object.
+  Use `opts` to specify additional options"))
