@@ -24,6 +24,14 @@
 (s/def ::put-object-ret (s/keys :req-un [::success?]
                                 :opt-un [::error-details]))
 
+(s/def ::copy-object-opts map?)
+(s/def ::copy-object-args (s/cat :config record?
+                                 :source-object-id ::object-id
+                                 :destination-object-id ::object-id
+                                 :opts ::copy-object-opts))
+(s/def ::copy-object-ret (s/keys :req-un [::success?]
+                                 :opt-un [::error-details]))
+
 (s/def ::get-object-opts (s/keys :opt-un [::encryption]))
 (s/def ::get-object-args (s/cat :config record? :object-id ::object-id :opts (s/? ::get-object-opts)))
 (s/def ::get-object-ret (s/keys :req-un [::success? (or ::object ::error-details)]))
@@ -53,11 +61,18 @@
     [this object-id object]
     [this object-id object opts]
     "Put `object` in the storage system, using `object-id` as the key.
-  Use `opts` to specify additional put options.
-  `object` can be either a File object or an InputStream. In the
-  latter case, if you know the size of the content in the InputStream,
-  add the `:metadata` key to the `opts` map. Its value should be a map
-  with a key called `:object-size`, with the size as its value.")
+     Use `opts` to specify additional put options.
+     `object` can be either a File object or an InputStream. In the
+     latter case, if you know the size of the content in the InputStream,
+     add the `:metadata` key to the `opts` map. Its value should be a map
+     with a key called `:object-size`, with the size as its value.")
+  (copy-object
+    [this source-object-id destination-object-id]
+    [this source-object-id destination-object-id opts]
+    "Copy object identified with `source-object-id` as key into new object identified with `destination-object-id`
+     in same assumed storage system.
+     For now there is no support to copy objects between different storage systems.
+     Use `opts` to specify additional options.")
   (get-object
     [this object-id]
     [this object-id opts]
@@ -66,12 +81,12 @@
     [this object-id]
     [this object-id opts]
     "Generates a url allowing access to the object without the need to auth oneself.
-  Get the object with key `object-id` from the storage system, using `opts` options")
+     Get the object with key `object-id` from the storage system, using `opts` options")
   (delete-object
     [this object-id]
     [this object-id opts]
     "Delete the object `object-id` from the storage system.
-  Use `opts` to specify additional delete options.")
+     Use `opts` to specify additional delete options.")
   (rename-object
     [this object-id new-object-id]
     "Rename `object-id` to `new-object-id` in the storage system.")
@@ -79,4 +94,4 @@
     [this parent-object-id]
     [this parent-object-id opts]
     "List all child objects of the `parent-object-id` object.
-  Use `opts` to specify additional options"))
+     Use `opts` to specify additional options"))
