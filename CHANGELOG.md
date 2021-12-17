@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this
 file. This change log follows the conventions of
 [keepachangelog.com](http://keepachangelog.com/).
 
+## Unreleased
+### Changed
+- Changed specs for `get-object-url-opts`
+
 ## 0.1.2 - 2020-05-05
 ### Added
 - Add new `copy-object` method

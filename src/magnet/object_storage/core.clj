@@ -16,6 +16,8 @@
 (s/def ::url (s/or :string string? :url #(instance? java.net.URL %)))
 (s/def ::method #{:create :read :update :delete})
 (s/def ::filename string?)
+(s/def ::content-type string?)
+(s/def ::content-disposition #{:attachment :inline})
 (s/def ::object-size (s/and integer? #(>= % 0)))
 (s/def ::metadata (s/keys :req-un [::object-size]))
 
@@ -36,7 +38,21 @@
 (s/def ::get-object-args (s/cat :config record? :object-id ::object-id :opts (s/? ::get-object-opts)))
 (s/def ::get-object-ret (s/keys :req-un [::success? (or ::object ::error-details)]))
 
-(s/def ::get-object-url-opts (s/keys :opt-un [::method ::filename]))
+(defmulti get-object-url-opts (fn [_] :default))
+
+(defmethod get-object-url-opts :default [{:keys [content-type content-disposition]}]
+  (cond
+    content-type
+    (s/keys :req-un [::filename ::content-type] :opt-un [::content-disposition ::method])
+
+    content-disposition
+    (s/keys :req-un [::filename ::content-disposition] :opt-un [::content-type ::method])
+
+    :else
+    (s/keys :opt-un [::method ::filename])))
+
+(s/def ::get-object-url-opts (s/multi-spec get-object-url-opts :default))
+
 (s/def ::get-object-url-args (s/cat :config record? :object-id ::object-id :opts (s/? ::get-object-url-opts)))
 (s/def ::get-object-url-ret (s/keys :req-un [::success? (or ::object-url ::error-details)]))
 
