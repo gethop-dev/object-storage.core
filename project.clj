@@ -1,4 +1,4 @@
-(defproject magnet/object-storage.core "0.1.3"
+(defproject magnet/object-storage.core "0.1.4-SNAPSHOT"
   :description "Library that provides an object storage generic protocol"
   :url "https://github.com/magnetcoop/object-storage.core"
   :license {:name "Mozilla Public Licence 2.0"
