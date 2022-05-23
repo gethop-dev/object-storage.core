@@ -1,4 +1,4 @@
-(defproject dev.gethop/object-storage.core "0.1.4"
+(defproject dev.gethop/object-storage.core "0.1.5-SNAPSHOT"
   :description "Library that provides an object storage generic protocol"
   :url "https://github.com/gethop-dev/object-storage.core"
   :license {:name "Mozilla Public Licence 2.0"
