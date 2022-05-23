@@ -18,5 +18,5 @@
    :repl {:repl-options {:host "0.0.0.0"
                          :port 4001}}
    :profiles/dev {}
-   :project/dev {:plugins [[jonase/eastwood "0.3.5"]
-                           [lein-cljfmt "0.6.6"]]}})
+   :project/dev {:plugins [[jonase/eastwood "1.2.3"]
+                           [lein-cljfmt "0.8.0"]]}})
