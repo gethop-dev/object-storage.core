@@ -1,6 +1,6 @@
-(defproject magnet/object-storage.core "0.1.4-SNAPSHOT"
+(defproject dev.gethop/object-storage.core "0.1.4-SNAPSHOT"
   :description "Library that provides an object storage generic protocol"
-  :url "https://github.com/magnetcoop/object-storage.core"
+  :url "https://github.com/gethop-dev/object-storage.core"
   :license {:name "Mozilla Public Licence 2.0"
             :url "https://www.mozilla.org/en-US/MPL/2.0/"}
   :dependencies [[org.clojure/clojure "1.10.0"]
