@@ -13,6 +13,7 @@ Note that this library is not intended to be used directly, see the list of [imp
 ## Implementations
 
 - [**S3** (Amazon Simple Storage Service)](https://github.com/gethop-dev/object-storage.s3)
+- [**Azure Blob Storage** (Azure Blob Storage)](https://github.com/gethop-dev/object-storage.azure-blob-storage)
 - [**FTP** (File Transfer Protocol)](https://github.com/gethop-dev/object-storage.ftp)
 
 ## License
