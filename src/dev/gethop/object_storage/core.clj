@@ -15,6 +15,7 @@
 (s/def ::error-details map?)
 (s/def ::url (s/or :string string? :url #(instance? java.net.URL %)))
 (s/def ::method #{:create :read :update :delete})
+(s/def ::object-public-url? boolean?)
 (s/def ::filename string?)
 (s/def ::content-type string?)
 (s/def ::content-disposition #{:attachment :inline})
@@ -43,13 +44,13 @@
 (defmethod get-object-url-opts :default [{:keys [content-type content-disposition]}]
   (cond
     content-type
-    (s/keys :req-un [::filename ::content-type] :opt-un [::content-disposition ::method])
+    (s/keys :req-un [::filename ::content-type] :opt-un [::content-disposition ::method ::object-public-url?])
 
     content-disposition
-    (s/keys :req-un [::filename ::content-disposition] :opt-un [::content-type ::method])
+    (s/keys :req-un [::filename ::content-disposition] :opt-un [::content-type ::method ::object-public-url?])
 
     :else
-    (s/keys :opt-un [::method ::filename])))
+    (s/keys :opt-un [::method ::filename ::object-public-url?])))
 
 (s/def ::get-object-url-opts (s/multi-spec get-object-url-opts :default))
 
