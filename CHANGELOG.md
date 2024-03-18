@@ -5,6 +5,11 @@ file. This change log follows the conventions of
 
 ## [Unreleased]
 
+## [0.1.5] - 2024-03-18
+
+### Added
+- Added specs to get public object-url
+
 ## [0.1.4] - 2022-05-23
 ### Changed
 - Moving the repository to [gethop-dev](https://github.com/gethop-dev) organization
@@ -32,6 +37,7 @@ file. This change log follows the conventions of
 - Initial version
 
 [Unreleased]:  https://github.com/gethop-dev/object-storage.core/compare/v0.1.4...HEAD
+[0.1.5]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.5
 [0.1.4]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.4
 [0.1.3]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.3
 [0.1.2]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.2
