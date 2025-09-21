@@ -62,6 +62,12 @@
 (s/def ::delete-object-ret (s/keys :req-un [::success?]
                                    :opt-un [::error-details]))
 
+(s/def ::object-keys (s/coll-of ::object-id))
+(s/def ::deleted-count (s/and nat-int?))
+(s/def ::delete-objects-args (s/cat :config record? :object-keys ::object-keys))
+(s/def ::delete-objects-ret (s/keys :req-un [::success? ::deleted-count]
+                                    :opt-un [::error-details]))
+
 (s/def ::rename-object-args (s/cat :config record? :object-id ::object-id :new-object-id ::object-id))
 (s/def ::rename-object-ret (s/keys :req-un [::success?]
                                    :opt-un [::error-details]))
@@ -104,6 +110,13 @@
     [this object-id opts]
     "Delete the object `object-id` from the storage system.
      Use `opts` to specify additional delete options.")
+  
+  (delete-objects
+    [this object-keys]
+    "Delete multiple objects from the storage system.
+     `object-keys` is a collection of object identifiers to delete.
+     Returns a map with `:success?` and optionally `:deleted-count` and `:error-details`.")
+  
   (rename-object
     [this object-id new-object-id]
     "Rename `object-id` to `new-object-id` in the storage system.")
