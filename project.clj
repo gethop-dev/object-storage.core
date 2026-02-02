@@ -1,10 +1,10 @@
-(defproject dev.gethop/object-storage.core "0.1.6-SNAPSHOT"
+(defproject dev.gethop/object-storage.core "0.1.6"
   :description "Library that provides an object storage generic protocol"
   :url "https://github.com/gethop-dev/object-storage.core"
   :license {:name "Mozilla Public Licence 2.0"
             :url "https://www.mozilla.org/en-US/MPL/2.0/"}
-  :dependencies [[org.clojure/clojure "1.10.0"]
-                 [org.clojure/spec.alpha "0.3.214"]]
+  :dependencies [[org.clojure/clojure "1.12.4"]
+                 [org.clojure/spec.alpha "0.5.238"]]
   :deploy-repositories [["snapshots" {:url "https://clojars.org/repo"
                                       :username :env/CLOJARS_USERNAME
                                       :password :env/CLOJARS_PASSWORD
@@ -18,5 +18,5 @@
    :repl {:repl-options {:host "0.0.0.0"
                          :port 4001}}
    :profiles/dev {}
-   :project/dev {:plugins [[jonase/eastwood "1.2.3"]
-                           [lein-cljfmt "0.8.0"]]}})
+   :project/dev {:plugins [[jonase/eastwood "1.4.3"]
+                           [lein-cljfmt "0.9.2"]]}})

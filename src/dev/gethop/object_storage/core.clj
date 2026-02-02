@@ -19,8 +19,12 @@
 (s/def ::filename string?)
 (s/def ::content-type string?)
 (s/def ::content-disposition #{:attachment :inline})
+(s/def ::content-encoding string?)
 (s/def ::object-size (s/and integer? #(>= % 0)))
-(s/def ::metadata (s/keys :req-un [::object-size]))
+(s/def ::metadata (s/keys :opt-un [::object-size
+                                   ::content-type
+                                   ::content-disposition
+                                   ::content-encoding]))
 
 (s/def ::put-object-opts (s/keys :opt-un [::encryption ::metadata]))
 (s/def ::put-object-args (s/cat :config record? :object-id ::object-id :object ::object :opts ::put-object-opts))
@@ -79,10 +83,19 @@
     [this object-id object opts]
     "Put `object` in the storage system, using `object-id` as the key.
      Use `opts` to specify additional put options.
-     `object` can be either a File object or an InputStream. In the
-     latter case, if you know the size of the content in the InputStream,
-     add the `:metadata` key to the `opts` map. Its value should be a map
-     with a key called `:object-size`, with the size as its value.")
+
+    `object` can be either a File object or an InputStream. In the
+    latter case, if you know the size of the content in the
+    InputStream, add the `:metadata` key to the `opts` map. Its value
+    should be a map with a key called `:object-size`, with the size as
+    its value.
+
+    For storage systems that support it, you can also specify the
+    object Content-Type, and the desired Content-Disposition and/or
+    Content-Encoding that will be used for `get-object` operations
+    that use the object URL directly. For that, you can pass the
+    `:content-type`, `:content-disposition` and/or `:content-encoding`
+    keys in the `:metadata` map.")
   (copy-object
     [this source-object-id destination-object-id]
     [this source-object-id destination-object-id opts]
