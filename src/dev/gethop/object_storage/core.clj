@@ -41,8 +41,9 @@
 
 (s/def ::get-object-opts (s/keys :opt-un [::encryption]))
 (s/def ::get-object-args (s/cat :config record? :object-id ::object-id :opts (s/? ::get-object-opts)))
-(s/def ::get-object-ret (s/keys :req-un [::success? (or ::object ::error-details)]))
+(s/def ::get-object-ret (s/keys :req-un [::success? (or (and ::object (s/nilable ::metadata)) ::error-details)]))
 
+#_{:clj-kondo/ignore [:missing-docstring]}
 (defmulti get-object-url-opts (fn [_] :default))
 
 (defmethod get-object-url-opts :default [{:keys [content-type content-disposition]}]

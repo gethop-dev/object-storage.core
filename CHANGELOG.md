@@ -5,20 +5,20 @@ file. This change log follows the conventions of
 
 ## [Unreleased]
 
-## [0.1.6] - 2026-02-01
+## [0.1.7] - 2026-02-02
+### Changed
+- Added :metadata key as a required value (that may be nil) in the map returned by get-object, when successfully executed.
 
+## [0.1.6] - 2026-02-02
 ### Added
-
 - Added new metadata options for `put-object` method: `:content-type`, `:content-disposition` and `:content-encoding` options.
 
 ### Changed
-
 - Upgraded Clojure version to 1.12.4 and spec.alpha to 0.5.238
 - Upgraded linting dependencies to latest stable versions
 - Upgraded github Actions dependencies
 
 ## [0.1.5] - 2024-03-18
-
 ### Added
 - Added specs to get public object-url
 
@@ -48,7 +48,8 @@ file. This change log follows the conventions of
 ### Added
 - Initial version
 
-[Unreleased]:  https://github.com/gethop-dev/object-storage.core/compare/v0.1.6...HEAD
+[Unreleased]:  https://github.com/gethop-dev/object-storage.core/compare/v0.1.7...HEAD
+[0.1.7]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.7
 [0.1.6]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.6
 [0.1.5]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.5
 [0.1.4]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.4
