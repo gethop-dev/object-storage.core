@@ -5,6 +5,9 @@ file. This change log follows the conventions of
 
 ## [Unreleased]
 
+### Changed
+- Split the specs for the metadata option for the `put-object` method and the return value of the `get-object` method. Because they are very similar, but not identical. The former has the `:content-disposition` key whose value must be keyword for a restricted set, while the later has the `:content-disposition` key whose value is a string, with the full `Content-Disposition` header value for the object.
+
 ## [0.1.7] - 2026-02-02
 ### Changed
 - Added :metadata key as a required value (that may be nil) in the map returned by get-object, when successfully executed.

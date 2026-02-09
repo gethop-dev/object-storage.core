@@ -3,7 +3,9 @@
 ;; file, You can obtain one at http://mozilla.org/MPL/2.0/
 
 (ns dev.gethop.object-storage.core
-  (:require [clojure.spec.alpha :as s]))
+  (:require [clojure.spec.alpha :as s]
+            [dev.gethop.object-storage.core.put-object-spec :as-alias put-object-spec]
+            [dev.gethop.object-storage.core.get-object-spec :as-alias get-object-spec]))
 
 ;; Specs used to validate arguments and return values for
 ;; implementations of the protocol
@@ -18,15 +20,21 @@
 (s/def ::object-public-url? boolean?)
 (s/def ::filename string?)
 (s/def ::content-type string?)
-(s/def ::content-disposition #{:attachment :inline})
+(s/def ::put-object-spec/content-disposition #{:attachment :inline})
+(s/def ::get-object-spec/content-disposition string?)
 (s/def ::content-encoding string?)
 (s/def ::object-size (s/and integer? #(>= % 0)))
-(s/def ::metadata (s/keys :opt-un [::object-size
-                                   ::content-type
-                                   ::content-disposition
-                                   ::content-encoding]))
-
-(s/def ::put-object-opts (s/keys :opt-un [::encryption ::metadata]))
+(s/def ::put-object-spec/metadata (s/keys :opt-un [::object-size
+                                                   ::content-type
+                                                   ::put-object-spec/content-disposition
+                                                   ::content-encoding
+                                                   ::filename]))
+(s/def ::get-object-spec/metadata (s/keys :opt-un [::object-size
+                                                   ::content-type
+                                                   ::get-object-spec/content-disposition
+                                                   ::content-encoding
+                                                   ::filename]))
+(s/def ::put-object-opts (s/keys :opt-un [::encryption ::put-object-spec/metadata]))
 (s/def ::put-object-args (s/cat :config record? :object-id ::object-id :object ::object :opts ::put-object-opts))
 (s/def ::put-object-ret (s/keys :req-un [::success?]
                                 :opt-un [::error-details]))
@@ -41,7 +49,7 @@
 
 (s/def ::get-object-opts (s/keys :opt-un [::encryption]))
 (s/def ::get-object-args (s/cat :config record? :object-id ::object-id :opts (s/? ::get-object-opts)))
-(s/def ::get-object-ret (s/keys :req-un [::success? (or (and ::object (s/nilable ::metadata)) ::error-details)]))
+(s/def ::get-object-ret (s/keys :req-un [::success? (or (and ::object (s/nilable ::get-object-spec/metadata)) ::error-details)]))
 
 #_{:clj-kondo/ignore [:missing-docstring]}
 (defmulti get-object-url-opts (fn [_] :default))
