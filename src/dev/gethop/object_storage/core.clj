@@ -4,8 +4,8 @@
 
 (ns dev.gethop.object-storage.core
   (:require [clojure.spec.alpha :as s]
-            [dev.gethop.object-storage.core.put-object-spec :as-alias put-object-spec]
-            [dev.gethop.object-storage.core.get-object-spec :as-alias get-object-spec]))
+            [dev.gethop.object-storage.core.get-object-spec :as-alias get-object-spec]
+            [dev.gethop.object-storage.core.put-object-spec :as-alias put-object-spec]))
 
 ;; Specs used to validate arguments and return values for
 ;; implementations of the protocol

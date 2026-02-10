@@ -5,12 +5,13 @@ file. This change log follows the conventions of
 
 ## [Unreleased]
 
+## [0.1.8] - 2026-02-10
 ### Changed
 - Split the specs for the metadata option for the `put-object` method and the return value of the `get-object` method. Because they are very similar, but not identical. The former has the `:content-disposition` key whose value must be keyword for a restricted set, while the later has the `:content-disposition` key whose value is a string, with the full `Content-Disposition` header value for the object.
 
 ## [0.1.7] - 2026-02-02
 ### Changed
-- Added :metadata key as a required value (that may be nil) in the map returned by get-object, when successfully executed.
+- Added :metadata key as a required value (that may be nil) in the map returned by `get-object`, when successfully executed.
 
 ## [0.1.6] - 2026-02-02
 ### Added
@@ -51,7 +52,8 @@ file. This change log follows the conventions of
 ### Added
 - Initial version
 
-[Unreleased]:  https://github.com/gethop-dev/object-storage.core/compare/v0.1.7...HEAD
+[Unreleased]:  https://github.com/gethop-dev/object-storage.core/compare/v0.1.8...HEAD
+[0.1.8]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.8
 [0.1.7]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.7
 [0.1.6]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.6
 [0.1.5]: https://github.com/gethop-dev/object-storage.core/releases/tag/v0.1.5
